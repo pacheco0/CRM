@@ -1,9 +1,5 @@
-'use client';
-
-import { useState } from 'react';
-import { useRouter } from 'next/navigation';
-import PageLayout from '../../../components/PageLayout';
-import CustomerForm from '../../../components/CustomerForm';
+import { Metadata } from 'next';
+import CustomerEditClient from './client';
 
 // Mock data for customers
 const CUSTOMERS = [
@@ -24,70 +20,24 @@ const CUSTOMERS = [
   // Additional customers would be here
 ];
 
-export default function EditCustomerPage({ params }: { params: { id: string } }) {
-  const router = useRouter();
-  const [isSubmitting, setIsSubmitting] = useState(false);
+export function generateStaticParams() {
+  return CUSTOMERS.map((customer) => ({
+    id: customer.id,
+  }));
+}
 
-  // Find the customer based on the ID from the URL
+export function generateMetadata({ 
+  params,
+}: {
+  params: { id: string };
+}): Metadata {
   const customer = CUSTOMERS.find(c => c.id === params.id);
-
-  if (!customer) {
-    return (
-      <PageLayout title="Customer Not Found">
-        <div className="rounded-md bg-red-50 p-4">
-          <div className="flex">
-            <div className="ml-3">
-              <h3 className="text-sm font-medium text-red-800">Customer not found</h3>
-              <div className="mt-2 text-sm text-red-700">
-                <p>The customer you are trying to edit does not exist or has been removed.</p>
-              </div>
-              <div className="mt-4">
-                <button
-                  type="button"
-                  onClick={() => router.push('/customers')}
-                  className="inline-flex items-center rounded-md bg-red-50 px-2 py-1 text-sm font-medium text-red-800 hover:bg-red-100"
-                >
-                  Back to Customers
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </PageLayout>
-    );
-  }
-
-  const handleSubmit = async (data: any) => {
-    setIsSubmitting(true);
-    
-    try {
-      // In a real application, you would call an API endpoint here
-      // to update the customer in the database
-      console.log('Updating customer:', data);
-      
-      // For demonstration, we'll simulate an API call with a timeout
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      
-      // Navigate back to the customer details page
-      router.push(`/customers/${params.id}`);
-      router.refresh();
-    } catch (error) {
-      console.error('Error updating customer:', error);
-      alert('Failed to update customer. Please try again.');
-    } finally {
-      setIsSubmitting(false);
-    }
+  return {
+    title: customer ? `Edit: ${customer.name} | CRM Pro` : 'Customer Not Found | CRM Pro',
   };
+}
 
-  return (
-    <PageLayout title={`Edit Customer: ${customer.name}`}>
-      <div className="mx-auto max-w-3xl">
-        <CustomerForm
-          initialData={customer}
-          onSubmit={handleSubmit}
-          isSubmitting={isSubmitting}
-        />
-      </div>
-    </PageLayout>
-  );
+export default function Page({ params }: { params: { id: string } }) {
+  const customer = CUSTOMERS.find(c => c.id === params.id);
+  return <CustomerEditClient customer={customer} id={params.id} />;
 } 
