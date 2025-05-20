@@ -29,7 +29,7 @@ export default function Sidebar() {
     <div className="flex h-full flex-col bg-indigo-700">
       <div className="flex flex-1 flex-col overflow-y-auto">
         <div className="flex h-16 shrink-0 items-center px-4">
-          <h1 className="text-2xl font-bold text-white">CRM Pro</h1>
+          <h1 className="text-2xl font-bold text-white">CRM FPV</h1>
         </div>
         <nav className="mt-5 flex-1 space-y-1 px-2">
           {navigation.map((item) => {
