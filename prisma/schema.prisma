@@ -1,0 +1,117 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../app/generated/prisma"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id             String     @id @default(uuid())
+  name           String
+  email          String     @unique
+  password       String
+  role           String     @default("user")
+  createdAt      DateTime   @default(now())
+  updatedAt      DateTime   @updatedAt
+  customers      Customer[]
+  deals          Deal[]
+  tasks          Task[]
+  activities     Activity[]
+}
+
+model Customer {
+  id            String     @id @default(uuid())
+  name          String
+  company       String?
+  industry      String?
+  email         String?
+  phone         String?
+  website       String?
+  address       String?
+  status        String     @default("lead")
+  source        String?
+  notes         String?
+  createdAt     DateTime   @default(now())
+  updatedAt     DateTime   @updatedAt
+  userId        String
+  user          User       @relation(fields: [userId], references: [id])
+  contacts      Contact[]
+  deals         Deal[]
+  tasks         Task[]
+  activities    Activity[]
+}
+
+model Contact {
+  id         String   @id @default(uuid())
+  firstName  String
+  lastName   String
+  email      String?
+  phone      String?
+  position   String?
+  notes      String?
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+  customerId String
+  customer   Customer @relation(fields: [customerId], references: [id])
+  activities Activity[]
+}
+
+model Deal {
+  id          String     @id @default(uuid())
+  title       String
+  value       Float
+  stage       String     @default("prospect")
+  closeDate   DateTime?
+  probability  Int        @default(0)
+  notes       String?
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+  customerId  String
+  customer    Customer   @relation(fields: [customerId], references: [id])
+  userId      String
+  user        User       @relation(fields: [userId], references: [id])
+  tasks       Task[]
+  activities  Activity[]
+}
+
+model Task {
+  id          String    @id @default(uuid())
+  title       String
+  description String?
+  dueDate     DateTime?
+  status      String    @default("pending")
+  priority    String    @default("medium")
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  customerId  String?
+  customer    Customer? @relation(fields: [customerId], references: [id])
+  dealId      String?
+  deal        Deal?     @relation(fields: [dealId], references: [id])
+  userId      String
+  user        User      @relation(fields: [userId], references: [id])
+  activities  Activity[]
+}
+
+model Activity {
+  id          String    @id @default(uuid())
+  type        String    // call, email, meeting, note
+  description String
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  customerId  String?
+  customer    Customer? @relation(fields: [customerId], references: [id])
+  contactId   String?
+  contact     Contact?  @relation(fields: [contactId], references: [id])
+  dealId      String?
+  deal        Deal?     @relation(fields: [dealId], references: [id])
+  taskId      String?
+  task        Task?     @relation(fields: [taskId], references: [id])
+  userId      String
+  user        User      @relation(fields: [userId], references: [id])
+}
