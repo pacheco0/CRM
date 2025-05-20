@@ -86,7 +86,7 @@ export default function CustomerForm({ initialData, onSubmit, isSubmitting = fal
                   id="name"
                   autoComplete="organization"
                   {...register('name', { required: 'Customer name is required' })}
-                  className={`block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 overflow-hidden text-ellipsis ${errors.name ? 'ring-red-500' : ''}`}
+                  className={`block w-full rounded-md border-0 px-3 py-2 text-gray-900 bg-white shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 ${errors.name ? 'ring-red-500' : ''}`}
                 />
                 {errors.name && (
                   <p className="mt-2 text-sm text-red-600">{errors.name.message?.toString()}</p>
@@ -103,7 +103,7 @@ export default function CustomerForm({ initialData, onSubmit, isSubmitting = fal
                   type="text"
                   id="company"
                   {...register('company')}
-                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 overflow-hidden text-ellipsis"
+                  className="block w-full rounded-md border-0 px-3 py-2 text-gray-900 bg-white shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
               </div>
             </div>
@@ -116,7 +116,7 @@ export default function CustomerForm({ initialData, onSubmit, isSubmitting = fal
                 <select
                   id="industry"
                   {...register('industry')}
-                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 overflow-hidden text-ellipsis"
+                  className="block w-full rounded-md border-0 px-3 py-2 text-gray-900 bg-white shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 >
                   <option value="">Select industry</option>
                   {industries.map((industry) => (
@@ -136,7 +136,7 @@ export default function CustomerForm({ initialData, onSubmit, isSubmitting = fal
                 <select
                   id="status"
                   {...register('status')}
-                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 overflow-hidden text-ellipsis"
+                  className="block w-full rounded-md border-0 px-3 py-2 text-gray-900 bg-white shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 >
                   {statuses.map((status) => (
                     <option key={status.id} value={status.id}>
@@ -162,7 +162,7 @@ export default function CustomerForm({ initialData, onSubmit, isSubmitting = fal
                       message: 'Invalid email address',
                     },
                   })}
-                  className={`block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 overflow-hidden text-ellipsis ${errors.email ? 'ring-red-500' : ''}`}
+                  className={`block w-full rounded-md border-0 px-3 py-2 text-gray-900 bg-white shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 ${errors.email ? 'ring-red-500' : ''}`}
                 />
                 {errors.email && (
                   <p className="mt-2 text-sm text-red-600">{errors.email.message?.toString()}</p>
@@ -180,7 +180,7 @@ export default function CustomerForm({ initialData, onSubmit, isSubmitting = fal
                   id="phone"
                   autoComplete="tel"
                   {...register('phone')}
-                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 overflow-hidden text-ellipsis"
+                  className="block w-full rounded-md border-0 px-3 py-2 text-gray-900 bg-white shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
               </div>
             </div>
@@ -195,7 +195,7 @@ export default function CustomerForm({ initialData, onSubmit, isSubmitting = fal
                   id="website"
                   placeholder="www.example.com"
                   {...register('website')}
-                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 overflow-hidden text-ellipsis"
+                  className="block w-full rounded-md border-0 px-3 py-2 text-gray-900 bg-white shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
               </div>
             </div>
@@ -208,7 +208,7 @@ export default function CustomerForm({ initialData, onSubmit, isSubmitting = fal
                 <select
                   id="source"
                   {...register('source')}
-                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 overflow-hidden text-ellipsis"
+                  className="block w-full rounded-md border-0 px-3 py-2 text-gray-900 bg-white shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 >
                   <option value="">Select source</option>
                   {sources.map((source) => (
@@ -229,7 +229,7 @@ export default function CustomerForm({ initialData, onSubmit, isSubmitting = fal
                   type="text"
                   id="address"
                   {...register('address')}
-                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 overflow-hidden text-ellipsis"
+                  className="block w-full rounded-md border-0 px-3 py-2 text-gray-900 bg-white shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
               </div>
             </div>
@@ -243,7 +243,7 @@ export default function CustomerForm({ initialData, onSubmit, isSubmitting = fal
                   id="notes"
                   rows={4}
                   {...register('notes')}
-                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 overflow-auto"
+                  className="block w-full rounded-md border-0 px-3 py-2 text-gray-900 bg-white shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
               </div>
             </div>
